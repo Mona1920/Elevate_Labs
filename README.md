@@ -7,4 +7,4 @@ A beginner-friendly project to create a clean, responsive landing page using onl
 **Tools Required**
     Visual Studio Code – Free code editor.
     Google Chrome – browser for testing.
-    Live Server Extension – Instantly preview your changes in real-time.
+    Live Server Extension – Instantly preview changes in real-time.
