@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic To-Do List</title>
+  <style>
+    /* Basic styling for layout */
+    body {
+      font-family: Arial, sans-serif;
+      background: #e6e6fa;
+      display: flex;
+      justify-content: center;
+      padding: 50px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Input and add button */
+    #taskInput {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-right: 10px;
+    }
+
+    #addBtn {
+      padding: 10px 15px;
+      background-color: navy;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #addBtn:hover {
+      background-color: green;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #f9f9f9;
+      margin-bottom: 10px;
+      padding: 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li.completed span {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .actions button {
+      margin-left: 8px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .complete-btn {
+      background-color: #007bff;
+    }
+
+    .complete-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>To-Do List</h2>
+
+    <!-- Input field and Add button -->
+    <div>
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button id="addBtn" onclick="addTask()">Add</button>
+    </div>
+
+    <!-- List where tasks will be added -->
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    // Function to add a new task
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const taskText = input.value.trim();
+
+      if (taskText === "") {
+        alert("kindly add a Task!");
+        return;
+      }
+
+      const li = document.createElement("li");
+
+      const span = document.createElement("span");
+      span.textContent = taskText;
+
+      // Buttons container
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      // Complete Button
+      const completeBtn = document.createElement("button");
+      completeBtn.textContent = "Complete";
+      completeBtn.className = "complete-btn";
+      completeBtn.onclick = () => {
+        li.classList.toggle("completed"); // Toggle completed class
+      };
+
+      // Delete Button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = () => {
+        li.remove(); // Remove task
+      };
+
+      // Append buttons to actions, then all to list item
+      actions.appendChild(completeBtn);
+      actions.appendChild(deleteBtn);
+      li.appendChild(span);
+      li.appendChild(actions);
+
+      // Add list item to task list
+      document.getElementById("taskList").appendChild(li);
+
+      // Clear input
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>
